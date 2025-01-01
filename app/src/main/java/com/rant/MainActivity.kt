@@ -1,26 +1,26 @@
 package com.rant
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
+import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.jaredrummler.ktsh.Shell
-
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -31,30 +31,69 @@ class MainActivity : AppCompatActivity() {
         val floatButton_ = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
         val instructionText_ = findViewById<EditText>(R.id.instrucionText)
         val motivationText_ = findViewById<TextView>(R.id.textView)
+        val titleText_ = findViewById<EditText>(R.id.titleText)
+        val tablayout = findViewById<TabLayout>(R.id.tabLayout)
+        val githubAutor = findViewById<ImageView>(R.id.imageView)
+        val appTitle_ = findViewById<TextView>(R.id.textView2)
+
+        fun startNotification(){
+            val serviceIntent = Intent(this, notificationService::class.java)
+            ContextCompat.startForegroundService(this, serviceIntent)
+        }
+        startNotification()
 
         if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES){
             instructionText_.setBackgroundResource(R.drawable.edittextdark)
             motivationText_.setBackgroundResource(R.drawable.edittextdark)
+            titleText_.setBackgroundResource(R.drawable.edittextdark)
         } else {
             instructionText_.setBackgroundResource(R.drawable.edittextlight)
             motivationText_.setBackgroundResource(R.drawable.edittextlight)
+            titleText_.setBackgroundResource(R.drawable.edittextlight)
         }
 
         floatButton_.setOnClickListener{
-            val notification_ = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            val ChannelID = "id"
-            val notificationChannel = NotificationChannel(ChannelID,
-                "Rant",
-                NotificationManager.IMPORTANCE_DEFAULT);
-            notification_.createNotificationChannel(notificationChannel);
-
-            val builder = NotificationCompat.Builder(this, ChannelID);
-
-            builder.setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("Tasks").setContentText("${instructionText_.text}")
-                .setOngoing(true)
-                .setAutoCancel(false)
-            notification_.notify(1, builder.build())
+            val sharedPrefs = getSharedPreferences("tasks", MODE_PRIVATE)
+            val tasksPrefs = sharedPrefs.edit()
+            tasksPrefs.putString(titleText_.text.toString(),instructionText_.text.toString())
+            tasksPrefs.apply()
         }
+
+        fun detectTab() {
+            when(tablayout.selectedTabPosition) {
+                0 -> {
+                    appTitle_.isVisible = true
+                    titleText_.isVisible = true
+                    githubAutor.isVisible = false
+                    instructionText_.isVisible = true
+                    floatButton_.setImageResource(android.R.drawable.ic_input_add)
+                    motivationText_.setText(R.string.motivation_text)
+                    motivationText_.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                }
+                1 -> {
+                    startActivity(Intent(this, tasksList::class.java).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION).apply {
+                        putExtra("keyIdentifier", "value")
+                    })
+                    tablayout.selectTab(tablayout.getTabAt(0))
+                }
+                2 -> {
+                    appTitle_.isVisible = false
+                    titleText_.isVisible = false
+                    instructionText_.isVisible = false
+                    githubAutor.isVisible = true
+                    floatButton_.setImageResource(R.drawable.ic_action_github)
+                    motivationText_.setText(R.string.about_text)
+                    motivationText_.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                }
+            }
+        }
+
+        detectTab()
+
+        tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {detectTab()}
+            override fun onTabUnselected(tab: TabLayout.Tab) {detectTab()}
+            override fun onTabReselected(tab: TabLayout.Tab) {detectTab()}
+        })
     }
 }
