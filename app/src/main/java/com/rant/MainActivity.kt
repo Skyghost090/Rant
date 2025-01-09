@@ -3,6 +3,7 @@ package com.rant
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -52,13 +54,6 @@ class MainActivity : AppCompatActivity() {
             titleText_.setBackgroundResource(R.drawable.edittextlight)
         }
 
-        floatButton_.setOnClickListener{
-            val sharedPrefs = getSharedPreferences("tasks", MODE_PRIVATE)
-            val tasksPrefs = sharedPrefs.edit()
-            tasksPrefs.putString(titleText_.text.toString(),instructionText_.text.toString())
-            tasksPrefs.apply()
-        }
-
         fun detectTab() {
             when(tablayout.selectedTabPosition) {
                 0 -> {
@@ -67,6 +62,12 @@ class MainActivity : AppCompatActivity() {
                     githubAutor.isVisible = false
                     instructionText_.isVisible = true
                     floatButton_.setImageResource(android.R.drawable.ic_input_add)
+                    floatButton_.setOnClickListener {
+                        val sharedPrefs = getSharedPreferences("tasks", MODE_PRIVATE)
+                        val tasksPrefs = sharedPrefs.edit()
+                        tasksPrefs.putString(titleText_.text.toString(),instructionText_.text.toString())
+                        tasksPrefs.apply()
+                    }
                     motivationText_.setText(R.string.motivation_text)
                     motivationText_.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                 }
@@ -82,6 +83,14 @@ class MainActivity : AppCompatActivity() {
                     instructionText_.isVisible = false
                     githubAutor.isVisible = true
                     floatButton_.setImageResource(R.drawable.ic_action_github)
+                    floatButton_.setOnClickListener {
+                        val builder = CustomTabsIntent.Builder()
+                        builder.setInstantAppsEnabled(true)
+                        builder.setDownloadButtonEnabled(false)
+                        val customBuilder = builder.build()
+                        customBuilder.intent.setPackage("com.android.chrome")
+                        customBuilder.launchUrl(this, Uri.parse("https://github.com/Skyghost090"))
+                    }
                     motivationText_.setText(R.string.about_text)
                     motivationText_.textAlignment = View.TEXT_ALIGNMENT_CENTER
                 }
