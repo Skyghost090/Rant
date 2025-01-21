@@ -1,3 +1,7 @@
+Here is the translation of the README into English:
+
+---
+
 # Rant
 
 ![Contributors](https://img.shields.io/github/contributors/skyghost090/Rant?style=plastic)
@@ -6,47 +10,47 @@
 ![Licence](https://img.shields.io/github/license/skyghost090/Rant)
 ![Issues](https://img.shields.io/github/issues/skyghost090/Rant)
 
-## Visão Geral
+## Overview
 
-O **Rant** é um aplicativo desenvolvido para otimizar a gestão de tarefas de maneira prática e discreta. Ele se distingue ao exibir as tarefas diretamente no painel de notificações do dispositivo, proporcionando uma forma eficiente de acompanhar as atividades diárias sem a necessidade de abrir um aplicativo dedicado.
+**Rant** is an app developed to optimize task management in a practical and discreet way. It stands out by displaying tasks directly on the device's notification panel, providing an efficient way to track daily activities without the need to open a dedicated app.
 
-Este aplicativo foi projetado para indivíduos que buscam simplicidade, facilidade de uso e uma maneira discreta de manter suas tarefas organizadas, sempre visíveis à medida que interagem com o dispositivo.
+This app is designed for individuals seeking simplicity, ease of use, and a discreet way to keep their tasks organized, always visible while interacting with the device.
 
-## Funcionalidades
+## Features
 
-- **Exibição de Tarefas nas Notificações**: As tarefas ficam disponíveis diretamente no painel de notificações, permitindo fácil acesso e gerenciamento, sem interrupções na navegação pelo dispositivo.
-- **Criação e Edição de Tarefas**: O usuário pode adicionar novas tarefas, bem como editar ou excluir as existentes com apenas alguns toques.
-- **Atualizações Dinâmicas**: O painel de notificações é automaticamente atualizado conforme o status das tarefas, garantindo que o usuário sempre tenha as informações mais recentes.
-- **Alertas e Lembretes**: O **Rant** envia notificações de alerta conforme o progresso das tarefas, ajudando a manter o controle dos prazos e da conclusão de atividades.
+- **Task Display in Notifications**: Tasks are displayed directly in the notification panel, allowing easy access and management without interrupting device navigation.
+- **Create and Edit Tasks**: Users can quickly add new tasks as well as edit or delete existing ones with just a few taps.
+- **Dynamic Updates**: The notification panel is automatically updated according to the status of tasks, ensuring that users always have the most up-to-date information.
+- **Alerts and Reminders**: **Rant** sends alert notifications based on the progress of tasks, helping users keep track of deadlines and task completion.
 
-## Como Funciona
+## How It Works
 
-1. **Instalação do Aplicativo**: O **Rant** pode ser baixado diretamente pela Play Store ou instalado manualmente a partir de um arquivo APK de fontes confiáveis.
-2. **Adição de Tarefas**: Após a instalação, o usuário pode adicionar tarefas de forma rápida e intuitiva.
-3. **Exibição no Painel de Notificações**: Assim que adicionada, a tarefa será automaticamente exibida no painel de notificações, visível a todo momento.
-4. **Gerenciamento das Tarefas**: O usuário pode facilmente marcar tarefas como concluídas ou editar seus detalhes, tanto pela notificação quanto diretamente dentro do aplicativo.
-5. **Remoção de Tarefas**: Após a conclusão de uma tarefa, o usuário pode removê-la para manter o painel de notificações sempre organizado.
+1. **App Installation**: **Rant** can be downloaded directly from the Play Store or manually installed from an APK file from trusted sources.
+2. **Adding Tasks**: After installation, users can quickly and intuitively add tasks.
+3. **Task Display in the Notification Panel**: Once added, the task will automatically appear in the notification panel, visible at all times.
+4. **Managing Tasks**: Users can easily mark tasks as completed or edit their details, either from the notification or directly within the app.
+5. **Removing Tasks**: After completing a task, users can remove it to keep the notification panel organized.
 
-## Benefícios
+## Benefits
 
-- **Acessibilidade e Visibilidade**: As tarefas estão sempre ao alcance do usuário, visíveis diretamente no painel de notificações, o que garante fácil acesso sem a necessidade de abrir um aplicativo adicional.
-- **Simplicidade e Eficiência**: A interface do **Rant** é projetada para ser direta e sem complexidade, permitindo que o usuário gerencie suas tarefas de forma eficiente e sem distrações.
-- **Atualizações em Tempo Real**: O sistema de notificações do **Rant** mantém o usuário informado sobre o status de suas tarefas em tempo real, garantindo uma gestão contínua e precisa.
+- **Accessibility and Visibility**: Tasks are always within reach, visible directly in the notification panel, ensuring easy access without the need to open an additional app.
+- **Simplicity and Efficiency**: The **Rant** interface is designed to be direct and straightforward, allowing users to manage tasks efficiently without distractions.
+- **Real-Time Updates**: The **Rant** notification system keeps users informed about the status of their tasks in real-time, ensuring continuous and accurate task management.
 
-## Contribuições
+## Contributing
 
-O **Rant** é um projeto de código aberto, e contribuições são bem-vindas. Para colaborar, siga os seguintes passos:
+**Rant** is an open-source project, and contributions are welcome. To collaborate, follow these steps:
 
-1. Realize um fork deste repositório.
-2. Crie uma nova branch (`git checkout -b feature/nome-da-feature`).
-3. Realize o commit de suas alterações (`git commit -m 'Adicionando nova funcionalidade'`).
-4. Envie para o repositório remoto (`git push origin feature/nome-da-feature`).
-5. Abra um Pull Request.
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature/branch-name`).
+3. Commit your changes (`git commit -m 'Adding new feature'`).
+4. Push to the remote repository (`git push origin feature/branch-name`).
+5. Open a Pull Request.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is licensed under the GPL License - see the [LICENSE](LICENSE) file for more details.
 
 ---
 
-O **Rant** oferece uma maneira elegante e eficiente de gerenciar suas tarefas diárias. Sua abordagem integrada às notificações do dispositivo visa otimizar a experiência do usuário, mantendo a organização e o controle das atividades de forma discreta e prática.
+**Rant** offers an elegant and efficient way to manage your daily tasks. Its approach, integrated with device notifications, aims to optimize the user experience while maintaining organization and control over tasks in a discreet and practical manner.
