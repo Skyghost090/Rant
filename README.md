@@ -1,7 +1,3 @@
-Here is the translation of the README into English:
-
----
-
 # Rant
 
 ![Contributors](https://img.shields.io/github/contributors/skyghost090/Rant?style=plastic)
