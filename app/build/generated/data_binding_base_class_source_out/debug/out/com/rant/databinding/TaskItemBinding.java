@@ -23,12 +23,16 @@ public final class TaskItemBinding implements ViewBinding {
   public final TextView taskInstructions;
 
   @NonNull
+  public final ConstraintLayout taskItem;
+
+  @NonNull
   public final TextView taskName;
 
   private TaskItemBinding(@NonNull ConstraintLayout rootView, @NonNull TextView taskInstructions,
-      @NonNull TextView taskName) {
+      @NonNull ConstraintLayout taskItem, @NonNull TextView taskName) {
     this.rootView = rootView;
     this.taskInstructions = taskInstructions;
+    this.taskItem = taskItem;
     this.taskName = taskName;
   }
 
@@ -65,13 +69,15 @@ public final class TaskItemBinding implements ViewBinding {
         break missingId;
       }
 
+      ConstraintLayout taskItem = (ConstraintLayout) rootView;
+
       id = R.id.taskName;
       TextView taskName = ViewBindings.findChildViewById(rootView, id);
       if (taskName == null) {
         break missingId;
       }
 
-      return new TaskItemBinding((ConstraintLayout) rootView, taskInstructions, taskName);
+      return new TaskItemBinding((ConstraintLayout) rootView, taskInstructions, taskItem, taskName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

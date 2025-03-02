@@ -11,11 +11,9 @@ import android.os.SystemClock.sleep
 import androidx.core.app.NotificationCompat
 import kotlin.system.exitProcess
 
-
 class notificationService : Service() {
     private fun run_(){
         val values = getSharedPreferences("tasks", MODE_PRIVATE).all.keys.toTypedArray()
-        val instructions = getSharedPreferences("tasks", MODE_PRIVATE).all.values.toTypedArray()
         val limitTaskList_ = values.size - 1
         var id = 0
         for (i in 0..limitTaskList_){
@@ -28,7 +26,8 @@ class notificationService : Service() {
             notification_.createNotificationChannel(notificationChannel)
             id++
             builder.setSmallIcon(R.mipmap.ic_launcher_foreground)
-                .setContentTitle(values[i].toString()).setContentText(instructions[i].toString())
+                .setContentTitle(values[i].toString())
+                .setContentText("")
                 .setOngoing(true)
                     .setAutoCancel(false)
                     .setPriority(NotificationCompat.PRIORITY_MIN)
