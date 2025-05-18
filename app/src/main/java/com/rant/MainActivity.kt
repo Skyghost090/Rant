@@ -1,32 +1,25 @@
 package com.rant
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
-import android.util.TypedValue
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.MaterialToolbar
-
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -45,12 +38,7 @@ class MainActivity : AppCompatActivity() {
         filterArray[0] = LengthFilter(32)
         instructionText_.setFilters(filterArray)
 
-        fun startNotification(){
-            val serviceIntent = Intent(this, notificationService::class.java)
-            ContextCompat.startForegroundService(this, serviceIntent)
-        }
-        startNotification()
-
+        NotificationTools().startNotification(applicationContext)
         fun readTasksDB(){
             val values = getSharedPreferences("tasks", MODE_PRIVATE).all.keys.toTypedArray()
             val instructions = getSharedPreferences("tasks", MODE_PRIVATE).all.values.toTypedArray()
@@ -70,34 +58,24 @@ class MainActivity : AppCompatActivity() {
                 adapter.setOnClickListener(
                     object :
                         tasksAdapter.OnClickListener{
-                        override fun onClick(position: Int, model: tasks) {
-                            taskslist.remove(taskslist[position])
-                            adapter.notifyItemRemoved(position)
-                            getSharedPreferences("tasks", MODE_PRIVATE).edit().remove(values[position]).apply()
-                            readTasksDB()
+                            override fun onClick(position: Int, model: tasks) {
+                                taskslist.remove(taskslist[position])
+                                adapter.notifyItemRemoved(position)
+                                getSharedPreferences("tasks", MODE_PRIVATE).edit().remove(values[position]).apply()
+                                readTasksDB()
+                            }
                         }
-                    }
-                )
+                    )
             }
         }
         readTasksDB()
 
         floatButton_.setOnClickListener {
-            if (instructionText_.text.toString() != ""){
-                val sharedPrefs = getSharedPreferences("tasks", MODE_PRIVATE)
-                val tasksPrefs = sharedPrefs.edit()
-                tasksPrefs.putString(instructionText_.text.toString(),"Click to Remove")
-                tasksPrefs.apply()
-                readTasksDB()
-            }
+            Clicks().floatButton(instructionText_.text.toString(), getSharedPreferences("tasks", MODE_PRIVATE))
+            readTasksDB()
         }
         aboutBtn.setOnClickListener {
-            val builder = CustomTabsIntent.Builder()
-            builder.setInstantAppsEnabled(true)
-            builder.setDownloadButtonEnabled(false)
-            val customBuilder = builder.build()
-            customBuilder.intent.setPackage("com.android.chrome")
-            customBuilder.launchUrl(this, Uri.parse("https://github.com/Skyghost090"))
+            startActivity(Clicks().aboutButton())
         }
     }
 }

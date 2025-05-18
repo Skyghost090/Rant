@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Rant</string>
-    <string name="motivation_text">Productivity Boost: Keep your workflow steady and uninterrupted with timely reminders.\n\nTask Management: Assign specific tasks to each alarm. Never forget what needs to be done next!\n\nEnhanced Focus: By breaking your work into manageable intervals, Task Alarm helps you maintain focus and avoid burnout.</string>
     <string name="about_text">About the app:\n\nGithub Autor:\nSkyghost090\n\nYou’re in control of your day!</string>
 </resources>
